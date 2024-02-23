@@ -17,7 +17,6 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     args: [],
   });
 
-
   const contract: ReceiverWallet = await ethers.getContract(
     "ReceiverWallet",
     deployerWallet

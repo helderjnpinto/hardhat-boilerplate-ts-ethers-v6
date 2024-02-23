@@ -39,7 +39,7 @@ const func: DeployFunction = async ({
     },
   });
 
-  const instance: Factory = await ethers.getContract("Factory");
+  const instance: Factory = await ethers.getContract("Factory", deployer);
 
   const factoryAddress = await instance.getAddress();
   console.info(`\n Factory address: ${factoryAddress}`);
@@ -52,7 +52,9 @@ const func: DeployFunction = async ({
   const receiver: ReceiverWallet = await ethers.getContract("ReceiverWallet");
 
   if (newlyDeployed) {
-    console.info(`\n Setting new receiver wallet implementation`);
+    console.info(
+      `\n Setting new receiver wallet implementation ${receiver.target}`
+    );
     await instance.setImplementationReceiverWallet(receiver.target);
   }
 

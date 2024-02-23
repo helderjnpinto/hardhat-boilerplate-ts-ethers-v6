@@ -24,7 +24,7 @@ contract Factory is Initializable, AccessControlUpgradeable {
   function setImplementationReceiverWallet(
     address receiverImpl
   ) external onlyRole(DEFAULT_ADMIN_ROLE) {
-    if (implementation == address(0)) {
+    if (receiverImpl == address(0)) {
       revert InvalidImpl();
     }
     implementation = receiverImpl;

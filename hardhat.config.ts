@@ -19,7 +19,6 @@ import {
 import { TASK_DEPLOY } from "hardhat-deploy";
 import { setup } from "@tenderly/hardhat-tenderly";
 import {
-  BooleanString,
   HardhatAccounts,
   HardhatNetworkUserConfigExt,
   tenderlySetup,
@@ -60,6 +59,8 @@ const hardhatConfig: HardhatUserConfig = {
     // tenderly testing local fork
     local_tenderly_fork: networksConfigs(),
     hardhat: networksConfigs(true) as HardhatNetworkUserConfig,
+    // using hardhat with forked states
+    hardhat_fork: networksConfigs(),
     polygon: networksConfigs(),
     mumbai: networksConfigs(),
   },

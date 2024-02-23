@@ -20,7 +20,6 @@ const func: DeployFunction = async ({
 
   const tenderlySDK = tenderlySdk();
 
-
   const { newlyDeployed } = await deploy("MyToken", {
     from: deployer,
     log: true,
@@ -52,12 +51,10 @@ const func: DeployFunction = async ({
     proxyAddress
   );
 
-
-  
   if (newlyDeployed && tenderlySDK && network.name.includes("tenderly")) {
-      await tenderlySDK.addWallet(minter, "minter wallet");
-      await tenderlySDK.addWallet(pauser, "pauser wallet");
-    }
+    await tenderlySDK.addWallet(minter, "minter wallet");
+    await tenderlySDK.addWallet(pauser, "pauser wallet");
+  }
 
   if (network?.name && network.name.includes("tenderly")) {
     try {

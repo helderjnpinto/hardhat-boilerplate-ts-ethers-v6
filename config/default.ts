@@ -6,19 +6,13 @@ import { ProjectConfig } from "../typings/ProjectConfigTypes";
 
 const defaultConfiguration: ProjectConfig = {
   accounts: {
-    mnemonic:
-      "test test test test test test test test test test test junk",
+    mnemonic: "test test test test test test test test test test test junk",
   },
   // default is hardhat network forking polygon network
   network: {
     name: "hardhat",
-    url: "",
-    chainId: 137,
-    forking: {
-      url: "https://polygon-mainnet.g.alchemy.com/v2/<api key here>",
-      blockNumber: 47537432,
-    },
     live: false,
+    url: "",
     saveDeployments: true,
     tags: ["test", "local"],
   },
@@ -59,7 +53,7 @@ const defaultConfiguration: ProjectConfig = {
   gasReporter: {
     enabled: false,
     currency: "USD",
-    token: 'MATIC',
+    token: "MATIC",
     gasPrice: 250,
     noColors: true,
   },
