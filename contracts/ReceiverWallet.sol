@@ -7,12 +7,17 @@ import "./IReceiverWallet.sol";
 
 /// @custom:security-contact security@gmail.com
 contract ReceiverWallet is IReceiverWallet, Initializable, OwnableUpgradeable {
-  /// @custom:oz-upgrades-unsafe-allow constructor
+  event NewReceiverWalletCreated(address newReceiver, address defaultAdmin);
+
   constructor() {
     _disableInitializers();
   }
 
-  function initialize(address initialOwner) public initializer {
-    __Ownable_init(initialOwner);
+  function initialize(address newOwner) external initializer {
+    _transferOwnership(newOwner);
+  }
+
+  receive() external payable {
+    emit NewReceiverWalletCreated(address(this), msg.sender);
   }
 }

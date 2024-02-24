@@ -116,7 +116,7 @@ task("get-balance-tenderly", "Prints an account's balance")
       "latest",
     ]);
 
-    console.log(
+    console.debug(
       `Account ${account} with balance ${BigInt(balance).toString()}`
     );
   });
@@ -140,7 +140,7 @@ task(
       "latest",
     ]);
 
-    console.log(
+    console.debug(
       `Successful add balance to account ${account}, balance: ${BigInt(
         balance
       ).toString()}`

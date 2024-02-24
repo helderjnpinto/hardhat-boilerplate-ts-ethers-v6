@@ -13,10 +13,9 @@ const func: DeployFunction = async ({
 }: HardhatRuntimeEnvironment) => {
   const { deploy } = deployments;
   const { deployer, proxyOwner, minter, pauser } = await getNamedAccounts();
-  const deployerSigner = await ethers.getSigner(deployer);
 
   const chainId = network.config.chainId;
-  console.info("\n Deploying polygon_Factory on " + chainId);
+  console.info("\n Deploying polygon_MyToken on " + chainId);
 
   const tenderlySDK = tenderlySdk();
 
@@ -28,8 +27,8 @@ const func: DeployFunction = async ({
         init: {
           args: [
             deployer, // default administrator
-            minter,
             pauser,
+            minter,
           ],
           methodName: "initialize",
         },

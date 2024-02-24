@@ -7,7 +7,9 @@ import "@openzeppelin/contracts/proxy/Clones.sol";
 import {IReceiverWallet} from "./ReceiverWallet.sol";
 
 contract Factory is Initializable, AccessControlUpgradeable {
-  address public implementation = address(0);
+  using Clones for address;
+
+  address public walletImplementation = address(0);
   event NewReceiverWalletCreated(address newReceiver, address defaultAdmin);
   error InvalidImpl();
   error ImplNotSetYet();
@@ -27,19 +29,17 @@ contract Factory is Initializable, AccessControlUpgradeable {
     if (receiverImpl == address(0)) {
       revert InvalidImpl();
     }
-    implementation = receiverImpl;
+    walletImplementation = receiverImpl;
   }
 
-  function createReceiverWallet(
-    address defaultAdmin
-  ) external returns (address newReceiver) {
-    if (implementation == address(0)) {
+  function createReceiverWallet(address defaultAdmin) external {
+    if (walletImplementation == address(0)) {
       revert ImplNotSetYet();
     }
 
-    newReceiver = Clones.clone(implementation);
-
+    address newReceiver = walletImplementation.clone();
     IReceiverWallet(newReceiver).initialize(defaultAdmin);
+
     emit NewReceiverWalletCreated(newReceiver, defaultAdmin);
   }
 }

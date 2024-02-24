@@ -1,5 +1,4 @@
 import { IConfig } from "config";
-import { ProjectConfig } from "../typings/ProjectConfigTypes";
 
 export class Config {
   config: IConfig;
@@ -10,10 +9,6 @@ export class Config {
     require("dotenv").config({ path, debug: !!process.env?.NODE_CONFIG_ENV });
     this.config = require("config");
   }
-
-  // get(name: string): any {
-  //   return this.config.get(name);
-  // }
 
   get<T>(name: string): T {
     return this.config.get<T>(name);

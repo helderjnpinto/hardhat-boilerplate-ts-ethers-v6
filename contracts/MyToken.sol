@@ -52,6 +52,10 @@ contract MyToken is
     _mint(to, amount);
   }
 
+  function decimals() public pure override returns (uint8) {
+    return 6;
+  }
+
   // The following functions are overrides required by Solidity.
 
   function _update(
