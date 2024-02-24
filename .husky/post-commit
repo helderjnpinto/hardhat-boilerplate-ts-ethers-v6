@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# maybe create this on CI before doing a merge
+# yarn generate:docs
